@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Les Universcènes App · Guide d'utilisation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,700;1,700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+.mock {
+    --fond:#0e0d0c; --fond2:#121110; --surface:#171513; --surface2:#1e1b18; --bord:#2e2a25; --bord2:#3a352f;
+    --texte:#f3ede2; --doux:#cfc6b8; --muet:#a89f91; --or:#d4a84b; --orc:#e8c878; --encre:#1a1408;
+    --velours:#b3261e; --veloursc:#e5635a; --alerte:#f08a80; --succes:#6fcf97; --bleu:#8cb8e8;
+   font-family:Inter,sans-serif; color:var(--texte); line-height:normal; font-size:16px; }
+.mock .tel { zoom:1.12; position:absolute; right:190px; top:42px; width:430px; height:870px; border-radius:62px; background:#050505;
+         box-shadow:0 0 0 2px #3a352f, 0 40px 120px rgba(0,0,0,.65), 0 0 160px rgba(212,168,75,.10); padding:14px; }
+.mock .ecran { position:relative; width:100%; height:100%; border-radius:50px; overflow:hidden; background:var(--fond); }
+.mock .encoche { position:absolute; top:12px; left:50%; width:120px; height:34px; margin-left:-60px; background:#000; border-radius:20px; z-index:20; }
+.mock .barre-etat { height:56px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 30px 6px; font-size:15px; font-weight:600; }
+.mock .beta { background:linear-gradient(90deg,#2a2213,#3a2e14); color:var(--orc); font-family:Montserrat; font-weight:700; font-size:11px; letter-spacing:.16em; text-align:center; padding:6px 0; text-transform:uppercase; }
+.mock .entete { display:flex; align-items:center; gap:10px; padding:12px 18px; border-bottom:1px solid var(--bord); }
+.mock .entete img { width:34px; height:34px; }
+.mock .entete b { font-family:Lora; font-size:19px; }
+.mock .corps { padding:16px; display:flex; flex-direction:column; gap:12px; }
+.mock .h-ecran { font-family:Lora; font-weight:700; font-size:26px; }
+.mock .petit { font-size:13px; color:var(--muet); }
+.mock .carte { background:var(--surface); border:1px solid var(--bord); border-radius:18px; padding:14px; }
+.mock .pill { display:inline-flex; align-items:center; gap:6px; border-radius:99px; padding:4px 11px; font-size:12px; font-weight:700; }
+.mock .btn { display:flex; align-items:center; justify-content:center; gap:8px; height:46px; border-radius:99px; font-weight:700; font-size:15px; }
+.mock .btn-v { background:var(--velours); color:#fff; }
+.mock .btn-o { background:var(--or); color:var(--encre); }
+.mock .btn-l { border:1.5px solid var(--or); color:var(--or); }
+.mock .champ { height:48px; border-radius:14px; border:1.5px solid var(--bord2); background:var(--fond2); display:flex; align-items:center; padding:0 14px; font-size:15px; color:var(--texte); }
+.mock .champ.focus { border-color:var(--or); }
+.mock .label { font-size:13px; color:var(--doux); margin-bottom:6px; }
+.mock .curseur { display:inline-block; width:2px; height:18px; background:var(--or); margin-left:2px; vertical-align:middle; }
+.mock .av { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex:none; color:var(--encre); }
+.mock .tap { position:absolute; width:70px; height:70px; border-radius:50%; border:3px solid var(--orc); pointer-events:none; z-index:30; }
+.mock .nav-bas { position:absolute; bottom:0; left:0; right:0; height:74px; border-top:1px solid var(--bord); background:rgba(14,13,12,.96); display:flex; justify-content:space-around; align-items:center; font-size:11px; color:var(--muet); }
+.mock .nav-bas div { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.mock .nav-bas i { width:22px; height:22px; border-radius:6px; border:2px solid currentColor; display:block; }
+.mock .nav-bas .on { color:var(--or); }
+.mock .app-ic { width:68px; height:68px; border-radius:17px; }
+.mock .msg { display:flex; gap:10px; font-size:14px; line-height:1.4; }
+.mock .appel { display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:14px; background:var(--surface); border:1px solid var(--bord); font-size:14px; font-weight:600; }
+.mock .appel span { flex:1; }
+.mock .appel .st { display:flex; gap:4px; }
+.mock .appel .st b { width:30px; height:30px; border-radius:9px; border:1.5px solid var(--bord2); display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--muet); }
+.mock .pers { display:flex; align-items:center; gap:10px; padding:9px 12px; font-size:14px; }
+.mock .pers span { flex:1; }
+.mock .pers small { font-size:11px; margin-left:4px; }
+.mock .pers i { width:20px; height:20px; border-radius:6px; border:1.5px solid var(--bord2); }
+.mock .pers.on { background:#2a2213; }
+.mock .pers.on i { background:var(--or); border-color:var(--or); }
+.mock .choix.on { background:var(--or); color:var(--encre); border-color:var(--or) !important; }
+.mock .cible-ajout.on { background:rgba(212,168,75,.18); color:var(--orc); }
+.mock .pdf-joint.on { border-color:var(--succes) !important; color:var(--succes); }
+.mock .tel { position:relative !important; right:auto !important; top:auto !important; zoom:1 !important; box-shadow:0 0 0 2px #3a352f !important; }
+.mock p { color:inherit; } .mock b { color:inherit; font-weight:700; }
+@media screen {
+  html { background:#2a2622; }
+  .barre-guide { position:sticky; top:0; z-index:50; display:flex; gap:10px; justify-content:center; align-items:center; padding:10px 12px; background:rgba(14,13,12,.94); backdrop-filter:blur(8px); border-bottom:1px solid #2e2a25; font-family:Inter,sans-serif; }
+  .barre-guide a, .barre-guide button { height:42px; padding:0 18px; border-radius:99px; font:600 14px Inter,sans-serif; display:inline-flex; align-items:center; gap:8px; cursor:pointer; text-decoration:none; }
+  .barre-guide a { color:#cfc6b8; border:1px solid #3a352f; }
+  .barre-guide button { background:#b3261e; color:#fff; border:0; }
+  .pages { padding:16px 0 40px; }
+  .page { margin:0 auto 16px; box-shadow:0 10px 40px rgba(0,0,0,.45); }
+}
+@media print { .barre-guide { display:none !important; } .pages { zoom:1 !important; } }
+</style>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --papier:#faf6ee; --papier2:#f2ebdd; --encre:#1b1714; --doux:#4a423a; --muet:#7d7367; --filet:#e2d8c6;
+    --nuit:#0e0d0c; --nuit2:#171513; --or:#c9973a; --orc:#e8c878; --velours:#a3221b; --vert:#2f8a57; --bleu:#3d6fa8;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family: Inter, sans-serif; color:var(--encre); font-size:10.5pt; line-height:1.45; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { width:210mm; height:297mm; position:relative; overflow:hidden; background:var(--papier); page-break-after:always; }
+  .page:last-child { page-break-after:auto; }
+  .marge { position:absolute; left:16mm; right:16mm; }
+  .kicker { font-family:Montserrat, sans-serif; font-weight:700; font-size:7.5pt; letter-spacing:.2em; text-transform:uppercase; color:var(--or); display:flex; align-items:center; gap:8px; }
+  .kicker::before { content:""; width:22px; height:1.5px; background:currentColor; }
+  h1, h2, h3 { font-family: Lora, "Playfair Display", Georgia, serif; font-weight:700; letter-spacing:-.005em; }
+  h2 { font-size:24pt; line-height:1.1; margin-top:2.5mm; }
+  h2 em, h1 em { font-style:italic; color:var(--or); }
+  h3 { font-size:12.5pt; line-height:1.2; }
+  p { color:var(--doux); }
+  b, strong { color:var(--encre); font-weight:600; }
+  .pied { position:absolute; left:16mm; right:16mm; bottom:9mm; display:flex; justify-content:space-between; align-items:center; font-size:8pt; color:var(--muet); border-top:1px solid var(--filet); padding-top:3mm; }
+  .pied img { width:6mm; height:6mm; vertical-align:middle; margin-right:2mm; }
+  .tel-g { position:absolute; filter: drop-shadow(0 6mm 8mm rgba(0,0,0,.28)); }
+  .legende { font-family:Montserrat; font-size:7pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muet); text-align:center; margin-top:2.5mm; }
+  .num { flex:none; width:9mm; height:9mm; border-radius:50%; background:var(--encre); color:var(--orc); display:flex; align-items:center; justify-content:center; font-family:Montserrat; font-weight:700; font-size:11pt; }
+  .liste { list-style:none; display:flex; flex-direction:column; gap:1.6mm; margin-top:2.5mm; }
+  .liste li { position:relative; padding-left:4.5mm; color:var(--doux); font-size:9.5pt; }
+  .liste li::before { content:""; position:absolute; left:0; top:1.9mm; width:1.6mm; height:1.6mm; border-radius:50%; background:var(--or); }
+  .puce { display:inline-block; font-family:Montserrat; font-weight:700; font-size:7.5pt; padding:.6mm 2.4mm; border-radius:99px; background:var(--papier2); color:var(--doux); border:1px solid var(--filet); margin:.4mm .4mm 0 0; }
+  .ico { flex:none; width:10mm; height:10mm; border-radius:3mm; background:var(--encre); color:var(--orc); display:flex; align-items:center; justify-content:center; }
+  .ico svg { width:5.4mm; height:5.4mm; }
+</style>
+</head>
+<body>
+<div class="barre-guide">
+  <a href="/espace" id="retour">← Retour à l'app</a>
+  <button onclick="window.print()">⬇ Télécharger en PDF</button>
+</div>
+<div class="pages">
+
+<!-- ============================ PAGE 1 ============================ -->
+<section class="page">
+  <!-- bandeau nuit -->
+  <div style="position:absolute;left:0;right:0;top:0;height:118mm;background:
+      radial-gradient(90mm 70mm at 82% 40%, rgba(212,168,75,.20), transparent 70%),
+      radial-gradient(120mm 80mm at 0% 120%, rgba(179,38,30,.45), transparent 70%), var(--nuit);"></div>
+  <div class="marge" style="top:16mm;width:104mm;color:#f3ede2">
+    <img src="/logo.png" style="width:22mm;height:22mm">
+    <div class="kicker" style="margin-top:6mm">Guide d'utilisation · Version bêta</div>
+    <h1 style="font-size:34pt;line-height:1.02;margin-top:3mm;color:#f3ede2">Les Universcènes <em style="color:var(--orc)">App</em></h1>
+    <p style="color:#cfc6b8;font-size:11pt;margin-top:4mm;line-height:1.5">L'application du club Théâtre &amp; Cinéma d'Universiapolis : planning, messagerie, démarches et vie du club, réunis dans votre poche.</p>
+    <div style="display:inline-flex;align-items:center;gap:2mm;margin-top:6mm;padding:2.2mm 4.5mm;border-radius:99px;border:1px solid rgba(232,200,120,.5);color:var(--orc);font-family:Montserrat;font-weight:700;font-size:10pt">universcenes-app.vercel.app</div>
+  </div>
+  <div class="tel-g" style="right:44mm;top:22mm;transform:rotate(-4deg)"><div class="mock" style=";zoom:0.3867"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <!-- navigateur -->
+    <div style="position: absolute; inset: 0px;">
+      <div class="barre-etat"><span>9:41</span><span>●●● 5G</span></div>
+      <div style="margin:6px 14px;height:40px;border-radius:12px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--doux)">universcenes-app.vercel.app</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:60px 24px;text-align:center">
+        <img src="/logo.png" style="width:120px">
+        <div style="font-family:Lora;font-weight:700;font-size:30px">Installe l'app pour continuer</div>
+        <div class="petit" style="font-size:15px;line-height:1.5">Touche <b style="color:var(--or)">Partager</b> puis « Sur l'écran d'accueil »</div>
+      </div>
+      
+      <div style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 400px; background: rgb(35, 32, 25); border-radius: 28px 28px 0px 0px; padding: 22px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="width:40px;height:5px;border-radius:9px;background:var(--bord2);margin:0 auto 12px"></div>
+        <div style="padding:14px;border-radius:12px;color:var(--doux)">Copier le lien</div>
+        <div style="padding:14px;border-radius:12px;color:var(--doux)">Ajouter aux favoris</div>
+        <div class="cible-ajout on" style="padding:14px;border-radius:12px;font-weight:700">＋ Sur l'écran d'accueil</div>
+        <div style="padding:14px;border-radius:12px;color:var(--doux)">Rechercher dans la page</div>
+        
+      </div>
+    </div>
+    <!-- écran d'accueil du téléphone -->
+    
+    <!-- splash -->
+    
+  </div></div></div></div>
+  <div class="tel-g" style="right:12mm;top:36mm;transform:rotate(3deg)"><div class="mock" style=";zoom:0.3867"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <div class="barre-etat"><span>9:43</span><span>●●● 5G</span></div>
+    <div class="beta">Version bêta</div>
+    <div class="corps" style="padding:26px 22px;gap:16px">
+      <img src="/logo.png" style="width:84px;align-self:center">
+      <div class="h-ecran" style="text-align:center">Créer mon compte</div>
+      <div><div class="label">Prénom et nom</div><div class="champ"><span>Salma Bennani</span></div></div>
+      <div><div class="label">Email</div><div class="champ focus"><span>salma.bennani@universiapolis.ma</span><span class="curseur"></span></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: rgba(111, 207, 151, 0.1); border: 1px solid rgba(111, 207, 151, 0.4); color: var(--succes); font-size: 14px; font-weight: 600;">✓ Candidature reconnue : bienvenue au club !</div>
+      <div><div class="label">Mot de passe</div><div class="champ"><span>••••••••••</span></div></div>
+      <div class="btn btn-v" style="margin-top:6px">Créer mon compte</div>
+      <div><div class="label" style="color:var(--muet)">Code d'invitation (si demandé)</div><div class="champ" style="color:var(--orc);letter-spacing:.2em;font-family:Montserrat;font-weight:700">UNIV-7K4Q</div></div>
+      
+    </div>
+  </div></div></div></div>
+
+  <!-- démarrer -->
+  <div class="marge" style="top:128mm">
+    <div class="kicker">Pour commencer</div>
+    <h2>Démarrer en <em>3 étapes</em></h2>
+  </div>
+
+  <div class="marge" style="top:156mm;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6mm">
+    <div>
+      <div style="display:flex;align-items:center;gap:3mm"><span class="num">1</span><h3>Installer l'app</h3></div>
+      <p style="margin-top:3mm;font-size:9.5pt">Sur téléphone, l'app s'utilise une fois installée sur l'écran d'accueil. Rien à télécharger dans un store.</p>
+      <div style="margin-top:3.5mm;padding:3mm;border-radius:3mm;background:#fff;border:1px solid var(--filet)">
+        <div style="font-family:Montserrat;font-weight:700;font-size:8pt;color:var(--encre)">iPhone · Safari</div>
+        <p style="font-size:8.8pt;margin-top:1mm">Ouvrez le lien, touchez <b>Partager</b>, puis <b>« Sur l'écran d'accueil »</b>.</p>
+        <div style="height:1px;background:var(--filet);margin:2.5mm 0"></div>
+        <div style="font-family:Montserrat;font-weight:700;font-size:8pt;color:var(--encre)">Android · Chrome</div>
+        <p style="font-size:8.8pt;margin-top:1mm">Touchez <b>Installer l'application</b>, ou le menu <b>⋮</b> puis <b>« Ajouter à l'écran d'accueil »</b>.</p>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:3mm"><span class="num">2</span><h3>Créer son compte</h3></div>
+      <p style="margin-top:3mm;font-size:9.5pt">Inscrivez-vous avec votre nom, votre email et un mot de passe.</p>
+      <ul class="liste">
+        <li><b>Vous avez candidaté au club ?</b> Utilisez le même email : il est déjà reconnu.</li>
+        <li><b>Sinon</b>, demandez un <b>code d'invitation</b> aux RH ou au Président.</li>
+        <li>Confirmez votre adresse grâce à l'email reçu.</li>
+      </ul>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:3mm"><span class="num">3</span><h3>Compléter son profil</h3></div>
+      <p style="margin-top:3mm;font-size:9.5pt">Dans <b>Mon profil</b> :</p>
+      <ul class="liste">
+        <li>ajoutez votre <b>photo</b>, pour que le club vous reconnaisse ;</li>
+        <li>vérifiez votre nom et votre pôle ;</li>
+        <li>suivez votre <b>taux de présence</b> et vos demandes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="marge" style="top:240mm;display:flex;gap:4mm;align-items:flex-start;padding:4.5mm 5mm;border-radius:4mm;background:var(--nuit2);color:#f3ede2">
+    <div class="ico" style="background:rgba(232,200,120,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
+    <div style="font-size:9.3pt;line-height:1.5;color:#cfc6b8">
+      <b style="color:#f3ede2">Bon à savoir.</b> Sur ordinateur, l'app s'ouvre directement dans le navigateur. Mot de passe oublié ? Touchez <b style="color:var(--orc)">« Mot de passe oublié ? »</b> sur la page de connexion : vous recevrez un lien par email.
+    </div>
+  </div>
+
+  <div class="pied"><span><img src="/logo.png">Les Universcènes · Club Théâtre &amp; Cinéma d'Universiapolis</span><span>1 / 3</span></div>
+</section>
+
+<!-- ============================ PAGE 2 ============================ -->
+<section class="page">
+  <div class="marge" style="top:16mm">
+    <div class="kicker">Espace membre</div>
+    <h2>Tout le club, <em>au même endroit</em></h2>
+    <p style="margin-top:2.5mm;max-width:150mm">Ce que chaque membre retrouve dans l'app, depuis le menu ou la barre en bas de l'écran.</p>
+  </div>
+
+  <div class="marge" style="top:52mm;display:grid;grid-template-columns:1fr 1fr;gap:5mm 7mm">
+    <!-- carte -->
+    <div style="display:flex;gap:3.5mm">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+      <div><h3>Accueil &amp; Planning</h3><p style="font-size:9.3pt;margin-top:1mm">Vos prochains rendez-vous dès l'ouverture, et le planning complet avec l'heure et le lieu.</p>
+        <div style="margin-top:1.5mm"><span class="puce">Répétition</span><span class="puce">Tournage</span><span class="puce">Spectacle</span><span class="puce">Réunion</span></div></div>
+    </div>
+    <div style="display:flex;gap:3.5mm">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div><h3>Messagerie</h3><p style="font-size:9.3pt;margin-top:1mm">Les discussions du club, en direct. Chacun peut supprimer ses propres messages.</p>
+        <div style="margin-top:1.5mm"><span class="puce"># Général</span><span class="puce"># Théâtre</span><span class="puce"># Cinéma</span><span class="puce"># Annonces (Bureau)</span></div></div>
+    </div>
+    <div style="display:flex;gap:3.5mm">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div><h3>Mes tâches</h3><p style="font-size:9.3pt;margin-top:1mm">Les missions qui vous sont confiées, avec priorité et date limite. Faites-les avancer : <b>À faire → En cours → Terminé</b>.</p></div>
+    </div>
+    <div style="display:flex;gap:3.5mm">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+      <div><h3>Guichet administratif</h3><p style="font-size:9.3pt;margin-top:1mm">Demandez une attestation de membre ou de participation, ou une autorisation d'absence. Suivez le statut et <b>téléchargez le PDF</b> dès qu'il est validé.</p></div>
+    </div>
+    <div style="display:flex;gap:3.5mm">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg></div>
+      <div><h3>Actualités</h3><p style="font-size:9.3pt;margin-top:1mm">Les nouvelles du club : spectacles, castings, tournages, avec images et liens (billetterie, vidéos…).</p></div>
+    </div>
+    <div style="display:flex;gap:3.5mm">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+      <div><h3>Documents</h3><p style="font-size:9.3pt;margin-top:1mm">Les scénarios et documents que le Bureau partage avec les membres, à ouvrir en un geste.</p></div>
+    </div>
+  </div>
+
+  <!-- téléphones -->
+  <div class="marge" style="top:146mm;height:118mm;border-radius:6mm;background:
+      radial-gradient(80mm 60mm at 50% 30%, rgba(212,168,75,.18), transparent 70%), var(--nuit)"></div>
+  <div class="marge" style="top:152mm;display:flex;justify-content:space-around;align-items:flex-start;padding:0 6mm">
+    <div><div  style="display:block;filter:drop-shadow(0 4mm 6mm rgba(0,0,0,.5))"><div class="mock" style=";zoom:0.3955"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <div class="barre-etat"><span>18:02</span><span>●●● 5G</span></div>
+    <div class="beta">Version bêta</div>
+    <div class="entete"><img src="/logo.png"><b>Universcènes</b></div>
+    <div class="corps">
+      <div class="h-ecran">Bonjour Salma</div>
+      <div class="petit" style="margin-top:-6px">Tes prochains rendez-vous</div>
+      <div class="carte evt" style="border-left: 4px solid var(--or);"><span class="pill" style="background:#2a2213;color:var(--orc)">Répétition</span><div style="font-weight:700;margin-top:8px">Acte II · filage complet</div><div class="petit" style="margin-top:4px">Mer 26 nov · 18:00 · Amphi B</div></div>
+      <div class="carte evt" style="border-left: 4px solid var(--velours);"><span class="pill" style="background:#3a1714;color:var(--alerte)">Tournage</span><div style="font-weight:700;margin-top:8px">Court métrage « Lumière »</div><div class="petit" style="margin-top:4px">Sam 29 nov · 10:00 · Studio</div></div>
+      <div class="carte evt" style="border-left: 4px solid var(--bleu);"><span class="pill" style="background:#16202b;color:var(--bleu)">Réunion</span><div style="font-weight:700;margin-top:8px">Réunion générale du club</div><div class="petit" style="margin-top:4px">Lun 1 déc · 17:30 · Salle 12</div></div>
+      <div class="carte evt" style="border-left: 4px solid var(--succes);"><span class="pill" style="background:#1e2a1f;color:var(--succes)">Spectacle</span><div style="font-weight:700;margin-top:8px">Première du spectacle</div><div class="petit" style="margin-top:4px">Ven 12 déc · 19:30 · Grande salle</div></div>
+    </div>
+    <div class="nav-bas"><div class="on"><i></i>Accueil</div><div><i></i>Planning</div><div><i></i>Messages</div><div><i></i>Profil</div></div>
+  </div></div></div></div><div class="legende" style="color:#cfc6b8">Planning</div></div>
+    <div><div  style="display:block;filter:drop-shadow(0 4mm 6mm rgba(0,0,0,.5))"><div class="mock" style=";zoom:0.3955"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <div class="barre-etat"><span>20:15</span><span>●●● 5G</span></div>
+    <div class="beta">Version bêta</div>
+    <div class="corps" style="gap:10px">
+      <div class="h-ecran">Messagerie</div>
+      <div style="display:flex;gap:7px;font-size:12px;font-weight:700">
+        <span class="pill" style="background:var(--or);color:var(--encre);padding:7px 11px"># Général</span>
+        <span class="pill" style="border:1px solid var(--bord2);color:var(--doux);padding:7px 11px"># Théâtre</span>
+        <span class="pill" style="border:1px solid var(--bord2);color:var(--doux);padding:7px 11px"># Cinéma</span>
+        <span class="pill" style="border:1px solid var(--bord2);color:var(--doux);padding:7px 11px">📣 Annonces</span>
+      </div>
+      <div class="carte" style="height:560px;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;padding:14px">
+        <div class="msg"><div class="av" style="background:#e8c878">YA</div><div><b>Yassine</b> <span class="petit">20:11</span><div>Qui ramène l'enceinte pour demain ?</div></div></div>
+        <div class="msg"><div class="av" style="background:#e5635a">IM</div><div><b>Imane</b> <span class="petit">20:12</span><div>Moi ! Et je prends les rallonges.</div></div></div>
+        <div class="msg"><div class="av" style="background:#8cb8e8">KH</div><div><b>Khalid</b> <span class="petit" style="color:var(--orc)">Président</span><div>Parfait. RDV 17h45 devant l'amphi.</div></div></div>
+        <div class="msg"><div class="av" style="background:#6fcf97">SA</div><div><b style="color:var(--or)">Salma</b> <span class="petit">20:15</span><div>Je serai là !</div></div></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center"><div class="champ" style="flex:1"><span></span></div><div class="btn btn-v" style="width:46px">➤</div></div>
+      
+    </div>
+  </div></div></div></div><div class="legende" style="color:#cfc6b8">Messagerie</div></div>
+    <div><div  style="display:block;filter:drop-shadow(0 4mm 6mm rgba(0,0,0,.5))"><div class="mock" style=";zoom:0.3955"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <div class="barre-etat"><span>11:20</span><span>●●● 5G</span></div>
+    <div class="beta">Version bêta</div>
+    <div class="corps" style="gap:14px">
+      <div class="h-ecran">Guichet administratif</div>
+      <div class="petit" style="margin-top:-8px">Demande un document officiel du club</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;font-weight:600">
+        <div class="choix on" style="border:1.5px solid var(--bord2);border-radius:12px;padding:12px">Attestation de membre</div>
+        <div style="border:1.5px solid var(--bord2);border-radius:12px;padding:12px;color:var(--doux)">Attestation de participation</div>
+        <div style="border:1.5px solid var(--bord2);border-radius:12px;padding:12px;color:var(--doux)">Autorisation d'absence</div>
+        <div style="border:1.5px solid var(--bord2);border-radius:12px;padding:12px;color:var(--doux)">Autre document</div>
+      </div>
+      <div class="btn btn-v">Envoyer la demande</div>
+      
+      
+      <div class="petit" style="text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-top:6px">Mes demandes</div>
+      <div class="carte">
+        <div style="display:flex;justify-content:space-between;align-items:center"><b>Attestation de membre</b>
+          
+          <span class="pill" style="background: rgb(30, 42, 31); color: var(--succes);">✓ Validée</span>
+        </div>
+        <div class="petit" style="margin-top:6px">Demandée le 20 nov.</div>
+        <div class="btn btn-o" style="margin-top: 12px; height: 42px; width: 220px;">⬇ Télécharger le PDF</div>
+      </div>
+      
+    </div>
+  </div></div></div></div><div class="legende" style="color:#cfc6b8">Guichet</div></div>
+  </div>
+
+  <div class="pied"><span><img src="/logo.png">Les Universcènes App · Guide d'utilisation</span><span>2 / 3</span></div>
+</section>
+
+<!-- ============================ PAGE 3 ============================ -->
+<section class="page">
+  <div class="marge" style="top:16mm;right:70mm">
+    <div class="kicker">Espace Bureau</div>
+    <h2>Un espace réservé, <em>selon votre rôle</em></h2>
+    <p style="margin-top:2.5mm">Les pages du Bureau sont invisibles pour les membres. Chaque responsable voit celles de son poste ; les vice-responsables ont les mêmes accès que leur responsable.</p>
+  </div>
+  <div class="tel-g" style="right:30mm;top:9mm;transform:rotate(-3deg)"><div class="mock" style=";zoom:0.2813"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <div class="barre-etat"><span>18:04</span><span>●●● 5G</span></div>
+    <div class="beta">Version bêta</div>
+    <div class="corps" style="gap:10px">
+      <div class="h-ecran">Feuille d'appel</div>
+      <div class="carte" style="padding:10px 14px"><div style="font-weight:700">Répétition · Acte II</div><div class="petit">Mer 26 nov · 18:00 · Amphi B</div></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--doux)"><span>Présents : <b style="color:var(--succes)">5</b> / 6</span><span class="petit">Enregistré automatiquement</span></div>
+      <div class="appel" style="border-color: var(--bord2);"><div class="av" style="background:#e8c878">AB</div><span>Amine B.</span><div class="st"><b style="background: rgb(30, 42, 31); color: rgb(111, 207, 151); border-color: rgb(111, 207, 151);">P</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">R</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">A</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">J</b></div></div>
+      <div class="appel" style="border-color: var(--bord2);"><div class="av" style="background:#e5635a">IM</div><span>Imane M.</span><div class="st"><b style="background: rgb(30, 42, 31); color: rgb(111, 207, 151); border-color: rgb(111, 207, 151);">P</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">R</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">A</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">J</b></div></div>
+      <div class="appel" style="border-color: var(--bord2);"><div class="av" style="background:#8cb8e8">OT</div><span>Omar T.</span><div class="st"><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">P</b><b style="background: rgb(42, 34, 19); color: rgb(232, 200, 120); border-color: rgb(232, 200, 120);">R</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">A</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">J</b></div></div>
+      <div class="appel" style="border-color: var(--bord2);"><div class="av" style="background:#6fcf97">SB</div><span>Salma B.</span><div class="st"><b style="background: rgb(30, 42, 31); color: rgb(111, 207, 151); border-color: rgb(111, 207, 151);">P</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">R</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">A</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">J</b></div></div>
+      <div class="appel" style="border-color: var(--bord2);"><div class="av" style="background:#c9a0dc">YE</div><span>Yassine E.</span><div class="st"><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">P</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">R</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">A</b><b style="background: rgb(22, 32, 43); color: rgb(140, 184, 232); border-color: rgb(140, 184, 232);">J</b></div></div>
+      <div class="appel" style="border-color: var(--bord2);"><div class="av" style="background:#f0b27a">ZK</div><span>Zineb K.</span><div class="st"><b style="background: rgb(30, 42, 31); color: rgb(111, 207, 151); border-color: rgb(111, 207, 151);">P</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">R</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">A</b><b style="background: transparent; color: var(--muet); border-color: var(--bord2);">J</b></div></div>
+    </div>
+  </div></div></div></div>
+  <div class="tel-g" style="right:10mm;top:16mm;transform:rotate(4deg)"><div class="mock" style=";zoom:0.2813"><div class="tel"><div class="ecran"><div class="encoche"></div>
+    <div class="barre-etat"><span>10:30</span><span>●●● 5G</span></div>
+    <div class="beta">Version bêta</div>
+    <div class="corps" style="gap:12px">
+      <div class="h-ecran">Nouvelle tâche</div>
+      <div><div class="label">Tâche</div><div class="champ focus" style="font-size:14px"><span>Réserver l'amphi pour la générale</span></div></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12px;font-weight:600;text-align:center">
+        <div style="border:1.5px solid var(--bord2);border-radius:10px;padding:10px 0;color:var(--doux)">Urgente</div><div class="choix on" style="border:1.5px solid var(--bord2);border-radius:10px;padding:10px 0">Haute</div><div style="border:1.5px solid var(--bord2);border-radius:10px;padding:10px 0;color:var(--doux)">Normale</div><div style="border:1.5px solid var(--bord2);border-radius:10px;padding:10px 0;color:var(--doux)">Basse</div>
+      </div>
+      <div class="label" style="margin:4px 0 -4px">Assigner à</div>
+      <div class="carte" style="padding:4px 0">
+        <div class="pers on"><div class="av" style="background:#e8c878;width:30px;height:30px">AB</div><span>Amine B. <small style="color:var(--orc)">Logistique</small></span><i></i></div>
+        <div class="pers on"><div class="av" style="background:#e5635a;width:30px;height:30px">IM</div><span>Imane M. <small style="color:var(--orc)">Vice-RP</small></span><i></i></div>
+        <div class="pers"><div class="av" style="background:#8cb8e8;width:30px;height:30px">OT</div><span>Omar T.</span><i></i></div>
+        <div class="pers on"><div class="av" style="background:#6fcf97;width:30px;height:30px">SB</div><span>Salma B.</span><i></i></div>
+      </div>
+      <div class="btn btn-v"><span>Assigner à 3 personnes</span></div>
+      
+    </div>
+  </div></div></div></div>
+
+  <div class="marge" style="top:90mm;border-radius:4mm;overflow:hidden;border:1px solid var(--filet);background:#fff">
+    <table style="width:100%;border-collapse:collapse;font-size:9pt">
+      <thead><tr style="background:var(--encre);color:var(--orc);font-family:Montserrat;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;text-align:left">
+        <th style="padding:2.6mm 3.5mm;width:30%">Rôle</th><th style="padding:2.6mm 3.5mm">Pages réservées</th></tr></thead>
+      <tbody>
+        <tr><td class="r">Président</td><td class="p">Analytics, assigner des tâches, valider les demandes, feuille d'appel, membres &amp; candidats, exports, codes d'invitation, documents, actualités</td></tr>
+        <tr><td class="r">Vice-présidence</td><td class="p">Analytics, membres &amp; candidats</td></tr>
+        <tr><td class="r">Secrétariat général</td><td class="p">Archives &amp; documents, demandes à traiter, actualités, membres &amp; candidats</td></tr>
+        <tr><td class="r">Ressources humaines</td><td class="p">Feuille d'appel, membres &amp; candidats, exports présences, codes d'invitation</td></tr>
+        <tr><td class="r">Artistique &amp; com.</td><td class="p">Publier une actualité</td></tr>
+        <tr><td class="r">Trésorerie, RP &amp; logistique</td><td class="p">Canal # Bureau et documents réservés au Bureau</td></tr>
+        <tr><td class="r">Administrateur</td><td class="p">Tous les accès, plus <b>Membres &amp; rôles</b> pour changer le rôle de chacun</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:8pt;padding:2.2mm 3.5mm;background:var(--papier2);color:var(--muet)">Tout le Bureau a aussi le canal privé <b># Bureau</b> dans la messagerie et voit les documents « Bureau seulement ».</p>
+  </div>
+  <style>
+    td.r { padding:1.9mm 3.5mm; font-weight:700; border-top:1px solid var(--filet); vertical-align:top; font-family:Inter; color:var(--encre) }
+    td.p { padding:1.9mm 3.5mm; border-top:1px solid var(--filet); color:var(--doux) }
+  </style>
+
+  <!-- les outils clés -->
+  <div class="marge" style="top:178mm;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm">
+    <div style="padding:4mm;border-radius:4mm;background:#fff;border:1px solid var(--filet)"><div style="font-family:Montserrat;font-weight:700;font-size:7.5pt;letter-spacing:.12em;color:var(--or);text-transform:uppercase">Appel</div><p style="font-size:8.8pt;margin-top:1.5mm">Présent, retard, absent ou justifié, enregistré à chaque touche.</p></div>
+    <div style="padding:4mm;border-radius:4mm;background:#fff;border:1px solid var(--filet)"><div style="font-family:Montserrat;font-weight:700;font-size:7.5pt;letter-spacing:.12em;color:var(--or);text-transform:uppercase">Tâches</div><p style="font-size:8.8pt;margin-top:1.5mm">Une tâche pour une ou plusieurs personnes, avec priorité et échéance.</p></div>
+    <div style="padding:4mm;border-radius:4mm;background:#fff;border:1px solid var(--filet)"><div style="font-family:Montserrat;font-weight:700;font-size:7.5pt;letter-spacing:.12em;color:var(--or);text-transform:uppercase">Demandes</div><p style="font-size:8.8pt;margin-top:1.5mm">Valider en joignant le PDF signé, ou refuser avec un motif.</p></div>
+    <div style="padding:4mm;border-radius:4mm;background:#fff;border:1px solid var(--filet)"><div style="font-family:Montserrat;font-weight:700;font-size:7.5pt;letter-spacing:.12em;color:var(--or);text-transform:uppercase">Exports</div><p style="font-size:8.8pt;margin-top:1.5mm">Récap, grille ou détail des présences, prêts pour Excel.</p></div>
+  </div>
+
+  <!-- aide -->
+  <div class="marge" style="top:212mm;height:66mm;border-radius:6mm;padding:7mm 8mm;color:#f3ede2;background:
+      radial-gradient(90mm 60mm at 100% 0%, rgba(212,168,75,.18), transparent 70%),
+      radial-gradient(90mm 60mm at 0% 120%, rgba(179,38,30,.40), transparent 70%), var(--nuit);display:grid;grid-template-columns:1.25fr 1fr;gap:9mm">
+    <div>
+      <div class="kicker" style="color:var(--orc)">Besoin d'aide ?</div>
+      <h3 style="font-size:16pt;margin-top:2.5mm;color:#f3ede2">Questions fréquentes</h3>
+      <div style="display:flex;flex-direction:column;gap:2.8mm;margin-top:4mm;font-size:9pt;line-height:1.45;color:#cfc6b8">
+        <div><b style="color:#f3ede2">Une page n'apparaît pas ?</b> Le menu dépend de votre rôle : demandez au Bureau de vérifier votre poste.</div>
+        <div><b style="color:#f3ede2">Pas de code d'invitation ?</b> Contactez les RH ou le Président du club.</div>
+        <div><b style="color:#f3ede2">Vos données ?</b> Les demandes, présences et documents internes ne sont visibles que par les personnes autorisées.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid rgba(232,200,120,.25);padding-left:8mm">
+      <div>
+        <div style="font-family:Montserrat;font-weight:700;font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--orc)">Version bêta</div>
+        <p style="font-size:9pt;margin-top:2mm;color:#cfc6b8">Un bug, une idée ? Vos retours font avancer l'app. Écrivez-nous :</p>
+        <p style="font-family:Montserrat;font-weight:700;font-size:9pt;color:var(--orc);margin-top:2mm">lesuniverscenesclub@gmail.com</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:3mm">
+        <img src="/logo.png" style="width:13mm;height:13mm">
+        <div><div style="font-family:Lora;font-weight:700;font-size:11pt;color:#f3ede2">Les Universcènes App</div><div style="font-family:Montserrat;font-weight:700;font-size:8pt;color:var(--orc)">universcenes-app.vercel.app</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pied"><span><img src="/logo.png">Les Universcènes App · Guide d'utilisation</span><span>3 / 3</span></div>
+</section>
+</div>
+<script>
+  if (window.self !== window.top) document.getElementById('retour').style.display = 'none';
+  function ajuster() { var l = document.documentElement.clientWidth - 16; document.querySelector('.pages').style.zoom = Math.min(1, l / 794); }
+  ajuster(); window.addEventListener('resize', ajuster);
+  window.addEventListener('beforeprint', function () { document.querySelector('.pages').style.zoom = 1; });
+  window.addEventListener('afterprint', ajuster);
+</script>
+</body>
+</html>
