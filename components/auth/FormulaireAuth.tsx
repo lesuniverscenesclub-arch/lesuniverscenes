@@ -89,7 +89,7 @@ export function FormulaireAuth({ suite, message }: { suite?: string; message?: s
         setErreur(
           code.trim()
             ? "Inscription refusée : le code d'invitation est invalide, expiré ou déjà utilisé."
-            : "Inscription refusée : un code d'invitation est nécessaire (sauf pour les emails du Bureau)."
+            : "Inscription refusée : cet email n'est pas sur la liste du club. Utilise l'email donné dans ton formulaire de candidature, ou demande un code d'invitation au Bureau."
         );
       }
       return;
@@ -196,7 +196,7 @@ export function FormulaireAuth({ suite, message }: { suite?: string; message?: s
                 ? "Ce code n'est pas valide (ou déjà utilisé)."
                 : codeValide
                   ? "Code valide : ton compte sera créé avec le rôle Membre."
-                  : "Demande ton code au Bureau. Membres du Bureau : laissez vide."}
+                  : "Candidature acceptée ou membre du Bureau : laisse vide, ton email suffit."}
             </span>
           </Champ>
           <BoutonEnvoyer chargement={chargement}>Créer mon compte</BoutonEnvoyer>
