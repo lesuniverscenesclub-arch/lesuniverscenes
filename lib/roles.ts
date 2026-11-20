@@ -74,8 +74,8 @@ export const NAVIGATION: SectionNav[] = [
     titre: "Espace commun",
     liens: [
       { label: "Accueil", href: "/espace", icone: "accueil", mobile: true, pret: true },
-      { label: "Planning", href: "/espace/planning", icone: "planning" },
-      { label: "Mes tâches", href: "/espace/taches", icone: "taches", mobile: true },
+      { label: "Planning", href: "/espace/planning", icone: "planning", mobile: true, pret: true },
+      { label: "Mes tâches", href: "/espace/taches", icone: "taches" },
       { label: "Messagerie", href: "/espace/messagerie", icone: "chat", mobile: true },
       { label: "Guichet administratif", href: "/espace/guichet", icone: "guichet" },
       { label: "Mon profil", href: "/espace/profil", icone: "profil", mobile: true, pret: true },
@@ -85,7 +85,6 @@ export const NAVIGATION: SectionNav[] = [
     titre: "Présidence",
     liens: [
       { label: "Analytics", href: "/espace/presidence/analytics", icone: "analytics", roles: ["PRESIDENT", "VICE_PRESIDENT"] },
-      { label: "Gérer les événements", href: "/espace/presidence/evenements", icone: "evenements", roles: ["PRESIDENT", "VICE_PRESIDENT"] },
       { label: "Assigner des tâches", href: "/espace/presidence/taches", icone: "assigner", roles: ["PRESIDENT"] },
       { label: "Valider les demandes", href: "/espace/presidence/demandes", icone: "valider", roles: ["PRESIDENT"] },
     ],
