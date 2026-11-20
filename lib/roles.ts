@@ -92,7 +92,8 @@ export const NAVIGATION: SectionNav[] = [
   {
     titre: "Ressources humaines",
     liens: [
-      { label: "Feuille d'appel", href: "/espace/rh/appel", icone: "appel", roles: ["RH", "PRESIDENT"] },
+      { label: "Feuille d'appel", href: "/espace/rh/appel", icone: "appel", roles: ["RH", "PRESIDENT"], pret: true },
+      { label: "Membres & candidats", href: "/espace/rh/membres", icone: "membres", roles: ["RH", "PRESIDENT", "VICE_PRESIDENT", "SECRETAIRE_GENERAL"], pret: true },
       { label: "Exports présences", href: "/espace/rh/exports", icone: "export", roles: ["RH", "PRESIDENT"] },
       { label: "Codes d'invitation", href: "/espace/rh/codes", icone: "codes", roles: ["RH", "PRESIDENT"], pret: true },
     ],
