@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Palette de la maquette : fond sombre, or, rouge velours */
+@theme {
+  --color-fond: #0e0d0c;
+  --color-fond-2: #121110;
+  --color-surface: #171513;
+  --color-surface-2: #1e1b18;
+  --color-bordure: #2e2a25;
+  --color-bordure-2: #3a352f;
+  --color-texte: #f3ede2;
+  --color-doux: #cfc6b8;
+  --color-muet: #a89f91;
+  --color-or: #d4a84b;
+  --color-or-clair: #e8c878;
+  --color-or-vif: #f5b42a;
+  --color-encre: #1a1408;
+  --color-velours: #b3261e;
+  --color-velours-clair: #e5635a;
+  --color-alerte: #f08a80;
+  --color-succes: #6fcf97;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-titre: var(--font-montserrat), var(--font-inter), sans-serif;
+}
+
+html,
+body {
+  background: var(--color-fond);
+  color: var(--color-texte);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Respecte l'encoche et la barre de geste des téléphones (app installée) */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+.hachures {
+  background-color: #1c1916;
+  background-image: repeating-linear-gradient(135deg, #221e1a 0 10px, #1c1916 10px 20px);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-or);
+  outline-offset: 2px;
+}
