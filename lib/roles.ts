@@ -50,6 +50,7 @@ export type IconeNav =
   | "codes"
   | "archives"
   | "actualites"
+  | "guide"
   | "membres";
 
 export interface LienNav {
@@ -81,6 +82,7 @@ export const NAVIGATION: SectionNav[] = [
       { label: "Actualités", href: "/espace/actualites", icone: "actualites", pret: true },
       { label: "Documents", href: "/espace/documents", icone: "archives", pret: true },
       { label: "Mon profil", href: "/espace/profil", icone: "profil", mobile: true, pret: true },
+      { label: "Guide de l'app", href: "/espace/guide", icone: "guide", pret: true },
     ],
   },
   {
