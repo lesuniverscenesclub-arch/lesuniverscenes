@@ -1,4 +1,5 @@
 import {
+  BookOpen,
   ChartColumn,
   CalendarDays,
   CalendarPlus,
@@ -35,6 +36,7 @@ const ICONES: Record<IconeNav, LucideIcon> = {
   codes: KeyRound,
   archives: FolderArchive,
   actualites: Newspaper,
+  guide: BookOpen,
   membres: Users,
 };
 
